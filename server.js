@@ -14,6 +14,8 @@ const passport = require('passport');
 // console.log(bobby); // De Niro - the variable name is bobby, not robert
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+const { router: linksRouter, controller: linksController } = require('./links');
+const { router: categoriesRouter, controller: categoriesController } = require('./categories');
 
 mongoose.Promise = global.Promise;
 
@@ -40,6 +42,8 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+app.use('/api/links', linksRouter);
+app.use('/api/categories', categoriesRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
@@ -48,6 +52,13 @@ app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({
     data: 'rosebud'
   });
+});
+
+// This is the GET route for when a user preprends the app's domain to the url to bookmark (along with a possible category name)
+// This route takes the url path and creates the link, along with a category if supplied by category-name--
+//app.get(/^\/([a-zA-Z0-9]{0,}-[a-zA-Z0-9]*){0,}(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+){0,}\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ , jwtAuth, linksController.createLink);
+app.get(/^\/([a-zA-Z0-9]{0,}-[a-zA-Z0-9]*){0,}(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+){0,}\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ , (req, res) => {  
+  res.redirect('/saveLink?link=' + req.originalUrl);
 });
 
 app.use('*', (req, res) => {

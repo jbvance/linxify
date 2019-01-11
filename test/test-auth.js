@@ -3,6 +3,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 
 const { app, runServer, closeServer } = require('../server');
 const { User } = require('../users');
@@ -20,6 +21,7 @@ describe('Auth endpoints', function () {
   const password = 'examplePass';
   const firstName = 'Example';
   const lastName = 'User';
+  const id = mongoose.Types.ObjectId();
 
   before(function () {
     return runServer(TEST_DATABASE_URL);
@@ -35,7 +37,8 @@ describe('Auth endpoints', function () {
         username,
         password,
         firstName,
-        lastName
+        lastName,
+        _id: id
       })
     );
   });
@@ -111,7 +114,8 @@ describe('Auth endpoints', function () {
           expect(payload.user).to.deep.equal({
             username,
             firstName,
-            lastName
+            lastName,
+            id: id.toString()
           });
         });
     });
