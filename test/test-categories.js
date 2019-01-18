@@ -17,7 +17,7 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('/api/categogories', function() {
-    const username = 'exampleUser';
+    const username = 'exampleUser1';
     const password = 'examplePass';
     const firstName = 'Example';
     const lastName = 'User';
