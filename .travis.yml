@@ -1,4 +1,11 @@
 language: node_js
 node_js: node
 services:
-  - mongodb
+- mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: oP3JQH4QHk3roG8MOTXzPv5oFUIQZe+EcvhVOBjmrBlc1hUSAFsSIZMN5AoquZO+Qe1SIPAL7yOVbwZxygP+FiJzy7USEsmoxJ9bsd6DlwyOj4mZLi0i64MxJg+2RdGt5nbecbZI2Qtdd0UVjvyS7QnmehG8Wn4MfIeNCuWimCKviizLLJTLXDVZqg+6FIl9Iz+dIGCYN8WALhc5gcnKGHgo0K2Fz642HPR7IcnpZ/ea9f7cgAKEetX5tz7gsLgVLV4S+ceuSngvWWDpN+vS8CXsj/Q6C8y4riGgm189lf0yWkPF3yd5HDUjA34Hc9jO/Iv++uzKSID/NODX0ZWvTZiR892u3dvHshVm1XLM5FTHS+JfyMZTAIWYELHVNtg9w9fxPNUOWNel4RNgHZEM5A7z1hLTpFtNsDD/syiR7Hl0bSlagMb+vP/smMaZBuRaeNdGGr6llOg0GFQ64aiKmXgkDupMXJxMVXzHpX6XuqYCzMPcbUYCy8NFGsweXt9dd4kScb8kRJ2ixfFTdkjW1drKJyi5a8xC1yyx7bbu+cTZJTyxNzyhWErXfH9Y9E9jXLvG9pHl1yU8Ne1Zz3ckp/o/dIovfskFfhRpfwhChAgrUO5Iip/wQBc5tly1DvT5HqEt2Kej7XlC5NMM9ZnNET41LbsAnRZqkffYAAHJTCs=
+  app: linxify
+  on:
+    repo: jbvance/linxify
