@@ -47,10 +47,10 @@ app.use('/api/categories', categoriesRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-// A protected endpoint which needs a valid JWT to access it
-app.get('/api/protected', jwtAuth, (req, res) => {
+// A enpoint called periodically by UptimeRobot to keep the Heroku dyno from falling asleep
+app.get('/keep-alive', (req, res) => {
   return res.json({
-    data: 'rosebud'
+    status: 'alive'
   });
 });
 
