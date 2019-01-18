@@ -11,7 +11,7 @@ const { User } = require('../users/models');
 
 //Gets links for a particular user - user's id is located via the jwt payload
 exports.getLinks = function (req, res) {     
-    console.log('USER', req.user);  
+    //console.log('USER', req.user);  
     Link.find({
             user: req.user.id
         })

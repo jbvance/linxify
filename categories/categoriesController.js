@@ -97,7 +97,7 @@ exports.updateCategory = async function(req, res) {
  
 };
 
-exports.getCategories = async function(req, res) {
+exports.getCategories = async function(req, res) {   
     const categories = await Category.find({ user: req.user.id });
     return res.status(200).json({
         data: categories
