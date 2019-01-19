@@ -19,7 +19,7 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('/api/links', function() {
-    const username = 'exampleUser';
+    const username = 'exampleUser1';
     const password = 'examplePass';
     const firstName = 'Example';
     const lastName = 'User';
@@ -178,7 +178,7 @@ describe('/api/links', function() {
           })                    
           .then((res) => {           
             response = res;
-            return Category.findById(res.body.data.category.toString());
+            return Category.findById(res.body.data.category._id.toString());
           })
           .then(category => {                        
             expect(category.name).to.equal('none');
@@ -202,7 +202,7 @@ describe('/api/links', function() {
           })                    
           .then((res) => {          
             response = res;
-            return Category.findById(res.body.data.category.toString());
+            return Category.findById(res.body.data.category._id.toString());
           })
           .then(category => {                       
             expect(category.name).to.equal(catInput);

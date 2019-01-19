@@ -183,8 +183,12 @@ exports.createLink = async function (req, res) {
             note: req.body.note
         });        
         if (link) {
-            return res.status(201).json({
-                data: link
+            Link.findById(link._id)
+            .populate('category')
+            .then(newLink => {
+                return res.status(201).json({
+                    data: newLink
+                })
             })
         } else {
             return res.status(500).json({
